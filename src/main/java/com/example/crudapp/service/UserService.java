@@ -46,12 +46,17 @@ public class UserService {
 
         userRepository.save(user);
     }
-    public User updateUser(String id, User user){
-        if(userRepository.existsById(id)){
-            user.setId(id);
-            return userRepository.save(user);
-        }
-        return null;
+    public void updateUser(String id , UserRequest userRequest){
+        User existingUser = userRepository.findById(id)
+                .orElseThrow(()->new ResponseStatusException(NOT_FOUND, "Product not found"));
+        User updatedUser = User.builder()
+                .id(existingUser.getId())
+                .age(userRequest.getAge())
+                .email(userRequest.getEmail())
+                .name(userRequest.getName())
+                .build();
+
+        userRepository.save(updatedUser);
     }
     public void deleteUser(String id) {
         userRepository.deleteById(id);

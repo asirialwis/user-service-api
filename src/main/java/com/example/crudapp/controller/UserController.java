@@ -4,6 +4,7 @@ import com.example.crudapp.dto.UserRequest;
 import com.example.crudapp.dto.UserResponse;
 import com.example.crudapp.model.User;
 import com.example.crudapp.service.UserService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,10 +15,10 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("api/users")
+@RequiredArgsConstructor
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserService userService;
 
     @GetMapping
     public List <UserResponse> getAllUsers(){
@@ -34,13 +35,10 @@ public class UserController {
         userService.createUser(userRequest);
     }
     @PutMapping("/{id}")
-    public ResponseEntity<User>updateUser(@PathVariable String id,@RequestBody User user){
-        User updatedUser = userService.updateUser(id,user);
-        if(updatedUser != null){
-            return new ResponseEntity<>(updatedUser,HttpStatus.OK);
-        }
-        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+    public void updateUser(@PathVariable String id, @RequestBody UserRequest userRequest){
+        userService.updateUser(id , userRequest);
     }
+
     @DeleteMapping("/{id}")
     public ResponseEntity<Void>deleteUser(@PathVariable String id){
         userService.deleteUser(id);
