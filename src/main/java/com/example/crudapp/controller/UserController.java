@@ -24,10 +24,9 @@ public class UserController {
         return userService.getAllUsers();
     }
     @GetMapping("/{id}")
-    public ResponseEntity<User>getUserById(@PathVariable String id){
-        Optional<User>user = userService.getUserById(id);
-        return user.map(value -> new ResponseEntity<>(value, HttpStatus.OK))
-                .orElseGet(()-> new ResponseEntity<>(HttpStatus.NOT_FOUND));
+    @ResponseStatus(HttpStatus.OK)
+    public UserResponse getUserById(@PathVariable String id){
+        return userService.findUserById(id);
     }
     @PostMapping
     @ResponseStatus(HttpStatus.OK)
