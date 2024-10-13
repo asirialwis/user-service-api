@@ -1,6 +1,7 @@
 package com.example.crudapp.controller;
 
 import com.example.crudapp.dto.UserRequest;
+import com.example.crudapp.dto.UserResponse;
 import com.example.crudapp.model.User;
 import com.example.crudapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class UserController {
     private UserService userService;
 
     @GetMapping
-    public ResponseEntity<List<User>> getAllUsers(){
-        return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
+    public List <UserResponse> getAllUsers(){
+        return userService.getAllUsers();
     }
     @GetMapping("/{id}")
     public ResponseEntity<User>getUserById(@PathVariable String id){
