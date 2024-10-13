@@ -1,5 +1,6 @@
 package com.example.crudapp.controller;
 
+import com.example.crudapp.dto.UserRequest;
 import com.example.crudapp.model.User;
 import com.example.crudapp.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,8 +29,9 @@ public class UserController {
                 .orElseGet(()-> new ResponseEntity<>(HttpStatus.NOT_FOUND));
     }
     @PostMapping
-    public ResponseEntity<User>createUser(@RequestBody User user){
-        return new ResponseEntity<>(userService.createUser(user),HttpStatus.CREATED);
+    @ResponseStatus(HttpStatus.OK)
+    public void createUser(@RequestBody UserRequest userRequest){
+        userService.createUser(userRequest);
     }
     @PutMapping("/{id}")
     public ResponseEntity<User>updateUser(@PathVariable String id,@RequestBody User user){

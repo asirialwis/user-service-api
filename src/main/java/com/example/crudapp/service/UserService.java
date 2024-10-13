@@ -1,5 +1,6 @@
 package com.example.crudapp.service;
 
+import com.example.crudapp.dto.UserRequest;
 import com.example.crudapp.model.User;
 import com.example.crudapp.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,14 @@ public class UserService {
     public Optional<User>getUserById(String id){
         return userRepository.findById(id);
     }
-    public User createUser(User user){
-        return userRepository.save(user);
+    public void  createUser(UserRequest userRequest){
+        User user = User.builder()
+                .name(userRequest.getName())
+                .email(userRequest.getEmail())
+                .age(userRequest.getAge())
+                .build();
+
+        userRepository.save(user);
     }
     public User updateUser(String id, User user){
         if(userRepository.existsById(id)){
