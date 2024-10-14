@@ -16,4 +16,5 @@ public class AppointmentRequest {
     private String doctorName;
     private String Location;
     private String paymentStatus;
+    private String category;
 }

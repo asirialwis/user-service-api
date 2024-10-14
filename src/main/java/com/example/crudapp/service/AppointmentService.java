@@ -19,6 +19,7 @@ public class AppointmentService {
                 .doctorName(appointmentRequest.getDoctorName())
                 .Location(appointmentRequest.getLocation())
                 .paymentStatus(appointmentRequest.getPaymentStatus())
+                .category(appointmentRequest.getCategory())
                 .build();
 
         appointmentRepository.save(appointment);

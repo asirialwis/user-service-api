@@ -20,6 +20,7 @@ public class Appointment {
     private String doctorName;
     private String Location;
     private String paymentStatus;
+    private String category;
 
     @CreatedDate
     private LocalDateTime createdAt;
