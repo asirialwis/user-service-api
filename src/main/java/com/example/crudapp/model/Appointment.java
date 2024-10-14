@@ -5,26 +5,33 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
 
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-@Document
+@Document(collection = "appointments")
+
 public class Appointment {
-    private int id;
+    @Id
+    private String id;
     private String doctorName;
-    private String Location;
+    private String location;
     private String paymentStatus;
     private String category;
 
     @CreatedDate
-    private LocalDateTime createdAt;
-
+    private LocalDateTime createAt;
     @LastModifiedDate
-    private LocalDateTime updatedAt;
+    private LocalDateTime updateAt;
+
+
+
 }

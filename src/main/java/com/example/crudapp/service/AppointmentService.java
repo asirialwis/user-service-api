@@ -17,7 +17,7 @@ public class AppointmentService {
     public void createAppointment(AppointmentRequest appointmentRequest) {
         Appointment appointment = Appointment.builder()
                 .doctorName(appointmentRequest.getDoctorName())
-                .Location(appointmentRequest.getLocation())
+                .location(appointmentRequest.getLocation())
                 .paymentStatus(appointmentRequest.getPaymentStatus())
                 .category(appointmentRequest.getCategory())
                 .build();
