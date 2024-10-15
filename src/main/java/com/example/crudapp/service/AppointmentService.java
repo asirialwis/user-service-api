@@ -1,6 +1,7 @@
 package com.example.crudapp.service;
 
 import com.example.crudapp.dto.AppointmentRequest;
+import com.example.crudapp.dto.AppointmentResponse;
 import com.example.crudapp.model.Appointment;
 import com.example.crudapp.repository.AppointmentRepository;
 import lombok.RequiredArgsConstructor;
@@ -25,5 +26,18 @@ public class AppointmentService {
                 .build();
 
         appointmentRepository.save(appointment);
+    }
+
+    private AppointmentResponse mapToUserResponse(Appointment appointment) {
+        return AppointmentResponse.builder()
+                .id(appointment.getId())
+                .userid(appointment.getUserid())
+                .doctorName(appointment.getDoctorName())
+                .location(appointment.getLocation())
+                .paymentStatus(appointment.getPaymentStatus())
+                .category(appointment.getCategory())
+                .appointmentStatus(appointment.getAppointmentStatus())
+                .build();
+
     }
 }
