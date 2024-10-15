@@ -17,5 +17,7 @@ public class AppointmentResponse {
     private String paymentStatus;
     private String category;
     private String appointmentStatus;
-    private ObjectId userid;
+    private String userid;
+
+    private UserResponse userResponse;
 }
