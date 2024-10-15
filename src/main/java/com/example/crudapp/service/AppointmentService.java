@@ -20,6 +20,8 @@ public class AppointmentService {
                 .location(appointmentRequest.getLocation())
                 .paymentStatus(appointmentRequest.getPaymentStatus())
                 .category(appointmentRequest.getCategory())
+                .appointmentStatus(appointmentRequest.getAppointmentStatus())
+                .userid(appointmentRequest.getUserid())
                 .build();
 
         appointmentRepository.save(appointment);

@@ -4,14 +4,14 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
+
 
 @Data
 @Builder
@@ -22,10 +22,12 @@ import java.time.ZonedDateTime;
 public class Appointment {
     @Id
     private String id;
+    private ObjectId userid;
     private String doctorName;
     private String location;
     private String paymentStatus;
     private String category;
+    private String appointmentStatus;
 
     @CreatedDate
     private LocalDateTime createAt;
